@@ -1,73 +1,45 @@
-#include <stdio.h>
-#include <ctype.h>
-#include <string.h>
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
- 
-int main()
-{
-    char s[200005];
-    int i,len,c, b;
 
-    scanf("%s",&s);
-    len=strlen(s); 
+bool isUpperCase(char ch) {
+    return ch >= 'A' and ch <= 'Z';
+}
 
-    // cout << "Got " << s << endl;
-    
-    // Check string[0], if it is lower, then put b=1 else b=0
+int main() {
+    string str;
+    cin >> str;
 
-    if (s[0] >= 'a' && s[0] <= 'z')
-    //if (islower(s[0]))
-    {
-        b=1; // lower first
+    // Case 1: first lower, all next upper
+    bool case1 = true;
+    for (int i = 0; i < str.length(); i++) {
+        if (i == 0) {
+            if (not(isUpperCase(str[i]))) {}
+            else {case1 = false; break;}
+        }
+        else {
+            if (isUpperCase(str[i])) {}
+            else {case1 = false; break;}
+        }
+    }
+
+    // Case 2: all upper
+    bool case2 = true;
+    for (char ch : str) {
+        if (not (isUpperCase(ch))) {
+            case2 = false;
+            break;
+        }
+    }
+
+    if (case1 or case2) {
+        for (char ch : str) {
+            // cout << ch << "-";
+            if (isUpperCase(ch)) cout << (char)(ch-'A'+'a');
+            else cout << (char)(ch-'a'+'A');
+        }
+        cout << endl;
     }
     else {
-        b=0;
+        cout << str << endl;
     }
-    
-    
-    // Check the next elemants; if it is upper then  c=c+1
-
-    c = 0;
-
-    for(i=1;i<len;i++)
-    {
-        if(s[i] >= 'A' && s[i] <= 'Z')
-        {
-            c++;
-        }
-    }
-    
-    //Ashol Khela Shuru
-    
-    //prothomta lowercase tarpor shob upper
-    if(b==1 && c==len-1)
-    {
-        // cout << "!" << s[0];
-        s[0] = (char)(s[0]-'a'+'A'); // (char) (s[0] - 32);
-        // cout << ">" << s[0];
-        //s[0]=toupper(s[0]);
-        for(i=1;i<len;i++) 
-        {
-            // cout << "!" << s[i];
-            s[i] = (char)(s[i]-'A'+'a');// (char) (s[i] + 32);
-            // cout << ">" << s[i];
-        } 
-         
-    }
-    
-    //All are uppercase
-    else if(b==0 && c==len-1)
-    {
-        for(i=0;i<len;i++)
-        {
-            // cout << "!" << s[i];
-            s[i] =  (char)(s[i]-'A'+'a');
-            // cout << ">>" << s[i];
-        }
-    
-    }
-    
-    printf("%s",s);
-    return 0;
 }
