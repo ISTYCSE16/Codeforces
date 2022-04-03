@@ -1,76 +1,73 @@
-#include <bits/stdc++.h>
- 
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+#include <iostream>
 using namespace std;
-
-bool isUpper (char ch)
-{
-    if (ch >= 'A' && ch <= 'Z' )
-    {
-        return true;
-    }
-    return false;
-}
-
-void lowerCasing (char a[], int start, int len)
-{
-    for (int i = start; i < len; ++i)
-    {
-        a[i] = a[i] + 32;
-    }
-}
-
-char makeUpper (char a)
-{
-    a = a - 32;
-    return a;
-}
- 
  
 int main()
 {
-    char str[1010];
- 
-    gets(str);
- 
-    int len = strlen(str);
- 
-    int case1 = 0;
+    char s[200005];
+    int i,len,c, b;
 
-    for (int i = 0; i < len; ++i)
+    scanf("%s",&s);
+    len=strlen(s); 
+
+    // cout << "Got " << s << endl;
+    
+    // Check string[0], if it is lower, then put b=1 else b=0
+
+    if (s[0] >= 'a' && s[0] <= 'z')
+    //if (islower(s[0]))
     {
-        if (!isUpper(str[i]) && i != 0)
+        b=1; // lower first
+    }
+    else {
+        b=0;
+    }
+    
+    
+    // Check the next elemants; if it is upper then  c=c+1
+
+    c = 0;
+
+    for(i=1;i<len;i++)
+    {
+        if(s[i] >= 'A' && s[i] <= 'Z')
         {
-            case1 = 0;
-            break;
-        }
-        if (i == 0)
-        {
-            if (!isUpper(str[i]))
-            {
-                case1 = 1;
-            }
-            else
-            {
-                case1 = 2;
-            }
+            c++;
         }
     }
     
-    if (case1 == 0)
+    //Ashol Khela Shuru
+    
+    //prothomta lowercase tarpor shob upper
+    if(b==1 && c==len-1)
     {
-        printf("%s\n", str);
+        // cout << "!" << s[0];
+        s[0] = (char)(s[0]-'a'+'A'); // (char) (s[0] - 32);
+        // cout << ">" << s[0];
+        //s[0]=toupper(s[0]);
+        for(i=1;i<len;i++) 
+        {
+            // cout << "!" << s[i];
+            s[i] = (char)(s[i]-'A'+'a');// (char) (s[i] + 32);
+            // cout << ">" << s[i];
+        } 
+         
     }
-    else if (case1 == 1)
+    
+    //All are uppercase
+    else if(b==0 && c==len-1)
     {
-        str[0] = makeUpper(str[0]);
-        lowerCasing(str, 1, len);
-        printf("%s\n", str);
+        for(i=0;i<len;i++)
+        {
+            // cout << "!" << s[i];
+            s[i] =  (char)(s[i]-'A'+'a');
+            // cout << ">>" << s[i];
+        }
+    
     }
-    else
-    {
-        lowerCasing(str, 0, len);
-        printf("%s\n", str);
-    }
-
+    
+    printf("%s",s);
     return 0;
 }
