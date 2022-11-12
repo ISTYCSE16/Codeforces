@@ -5,10 +5,11 @@ Submissions
 ## Introduction
 
 A repository to keep track of problem solving practice, containing solutions from platforms:
-{profile_placeholder}
+* Codeforces &nbsp; [![Codeforces](https://run.kaist.ac.kr/badges/codeforces/IstyFatinFaiaz.svg)](https://codeforces.com/profile/IstyFatinFaiaz)
+
 
 ## Contents
 
 | # | Title | Solution | Tags | Submitted |
 |---| ----- | -------- | ---- | --------- |
-{submission_placeholder}
+1 | [A - The Ultimate Square](https://codeforces.com/contest/1748/problem/A) | [GNU C++14](./codeforces/1748/A.cpp) | `math` `*800` | Nov/12/2022 20:56 | 
